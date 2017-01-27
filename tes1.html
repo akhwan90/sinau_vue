@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue JS</title>
+	<meta id="token" name="token" value="{{ csrf_token() }}">
+	<link rel="stylesheet" type="text/css" href="aset/bootstrap.min.css">
+	
+</head>
+<body>
+
+<div class="container" id="manage-vue" style="margin-top: 20px">
+	
+	<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="simpan">
+		<input type="hidden" name="id" v-model="item_detil.id">
+		<div class="form-group">
+			<label for="nama">Nama:</label>
+			<input type="text" name="nama" class="form-control" v-model="item_detil.nama" required="true" v-bind:disabled="disabel" autofocus/>
+		</div>
+
+		<div class="form-group">
+			<label for="satuan">Satuan:</label>
+			<input type="text" name="satuan" class="form-control" v-model="item_detil.satuan" required="true"  v-bind:disabled="disabel"/>
+		</div>
+
+		<div class="form-group">
+			<button type="submit" class="btn btn-success" v-bind:disabled="disabel">Submit</button>
+			<button type="reset" class="btn btn-info" @click.prevent="editItem(0)">Tambah</button>
+		</div>
+
+	</form>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">Data Barang</div>
+	
+		<div class="panel-body">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nama</th>
+					<th>Satuan</th>
+					<th>Aksi</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="i in items">
+					<td>{{i.id}}</td>
+					<td>{{i.nama}}</td>
+					<td>{{i.satuan}}</td>
+					<td>
+						<button class="btn btn-primary" @click.prevent="editItem(i.id)">Edit</button>
+						<button class="btn btn-danger" @click.prevent="hapusItem(i.id)">Hapus</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+
+</div>
+
+
+
+<script type="text/javascript" src="aset/jquery.min.js"></script>
+<script type="text/javascript" src="aset/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
+
+<script type="text/javascript" src="app.js"></script>
+
+</body>
+</html>
